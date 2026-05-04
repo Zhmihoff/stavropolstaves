@@ -56,24 +56,6 @@
                         <h3>Объявление</h3>
                         <p>Уважаемые потребители! Напоминаем, что с 01.03.2026 Федеральным законом от 24.06.2025 № 177-ФЗ изменены сроки оплаты коммунальных услуг — с 10 на 15 число месяца, следующего за расчетным.</p>
                     </div>
-                    <!-- Дубликаты для бесконечной прокрутки -->
-                    <div class="scroller-item">
-                        <h3>Новый удобный сайт</h3>
-                        <p>Добро пожаловать на новый сайт ПАО «Ставропольэнергосбыт»! Быстро и удобно просмотривайте новости, оформляйте обращения.</p>
-                    </div>
-                    <div class="scroller-item">
-                        <h3>Остерегайтесь мошенников!</h3>
-                        <p>Уважаемые абоненты ПАО «Ставропольэнергосбыт», участились случаи мошенничества. Настоятельно рекомендуем быть бдительными и не говорить лишнего.</p>
-                    </div>
-                    <div class="scroller-item">
-                        <h3>Техподдержка 24/7</h3>
-                        <p>Наши специалисты всегда на связи. Среднее время ответа — 2 минуты. Решаем любые вопросы по услугам и счетам.</p>
-                    </div>
-                    <div class="scroller-item">
-                        <h3>Объявление</h3>
-                        <p>Уважаемые потребители! Напоминаем, что с 01.03.2026 Федеральным законом от 24.06.2025 № 177-ФЗ изменены сроки оплаты коммунальных услуг — с 10 на 15 число месяца, следующего за расчетным.</p>
-                    </div>
-                </div>
             </div>
             <button class="scroller-arrow right" onclick="scrollManual(1)">&#10095;</button>
         </div>
@@ -147,7 +129,6 @@
     </footer>
 
     <script>
-        // === СКРОЛЛЕР ===
         let currentIndex = 0;
         const totalItems = 4;
         const scroller = document.getElementById('scroller');
@@ -195,12 +176,11 @@
         window.addEventListener('load', () => {
             updateScroll();
             startAutoScroll();
-            loadLatestNews();  // Загружаем новости после загрузки страницы
+            loadLatestNews();  
         });
 
         window.addEventListener('resize', () => updateScroll());
 
-        // === ЗАГРУЗКА ПОСЛЕДНИХ НОВОСТЕЙ ИЗ БАЗЫ ===
         function loadLatestNews() {
             const newsGrid = document.getElementById('newsGrid');
             
@@ -211,7 +191,6 @@
                 })
                 .then(data => {
                     if (data.success && data.data.length > 0) {
-                        // Берём только первые 3 новости
                         const latestNews = data.data.slice(0, 3);
                         displayNewsOnMain(latestNews);
                     } else {
@@ -229,7 +208,6 @@
             let html = '';
             
             news.forEach(item => {
-                // Форматируем дату: "27 Мар 2026"
                 const dateObj = new Date(item.news_date + 'T00:00:00');
                 const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
                 const formattedDate = `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${dateObj.getFullYear()}`;

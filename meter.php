@@ -223,7 +223,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </footer>
 
     <script>
-            <script>
         const phoneInput = document.getElementById('phone');
 
         function formatPhone(value) {

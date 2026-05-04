@@ -23,7 +23,6 @@ if (isset($_GET['delete_news']) && is_numeric($_GET['delete_news'])) {
     }
 }
 
-// Изменение статуса заявки
 if (isset($_POST['update_status'])) {
     try {
         $pdo = getDBConnection();
@@ -121,9 +120,9 @@ try {
             
             <!-- Вкладки -->
             <div class="tabs">
-                <button class="tab-btn active" onclick="showTab('news')">📰 Новости</button>
-                <button class="tab-btn" onclick="showTab('readings')">📋 Заявки</button>
-                <button class="tab-btn" onclick="showTab('add')">➕ Добавить новость</button>
+                <button class="tab-btn active" onclick="showTab('news')">Новости</button>
+                <button class="tab-btn" onclick="showTab('readings')">Заявки</button>
+                <button class="tab-btn" onclick="showTab('add')">Добавить новость</button>
             </div>
             
             <!-- Вкладка: Новости -->
@@ -161,8 +160,7 @@ try {
                     <?php endif; ?>
                 </div>
             </div>
-            
-            <!-- Вкладка: Заявки -->
+
             <div id="readings-tab" class="tab-content">
                 <div class="admin-section">
                     <h2>Заявки на передачу показаний</h2>
@@ -223,47 +221,45 @@ try {
                     <?php endif; ?>
                 </div>
             </div>
+
+           <div id="add-tab" class="tab-content">
+    <div class="admin-section">
+        <h2>Добавить новую новость</h2>
+        <form method="POST" class="add-news-form">
+            <input type="hidden" name="add_news" value="1">
             
-            <!-- Вкладка: Добавить новость -->
-            <div id="add-tab" class="tab-content">
-                <div class="admin-section">
-                    <h2>Добавить новую новость</h2>
-                    <form method="POST" class="add-news-form">
-                        <input type="hidden" name="add_news" value="1">
-                        
-                        <div class="form-group">
-                            <label for="news_name">Заголовок *</label>
-                            <input type="text" id="news_name" name="news_name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="news_date">Дата *</label>
-                            <input type="date" id="news_date" name="news_date" required value="<?php echo date('Y-m-d'); ?>">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="news_description">Текст новости (HTML разрешён) *</label>
-                            <textarea id="news_description" name="news_description" required></textarea>
-                        </div>
-                        
-                        <button type="submit">Добавить новость</button>
-                    </form>
-                </div>
+            <div class="form-group">
+                <label for="news_name">Заголовок *</label>
+                <input type="text" id="news_name" name="news_name" required>
             </div>
+            
+            <div class="form-group">
+                <label for="news_date">Дата *</label>
+                <input type="date" id="news_date" name="news_date" required value="<?php echo date('Y-m-d'); ?>">
+            </div>
+            
+            <div class="form-group">
+                <label for="news_description">Текст новости (HTML разрешён) *</label>
+                <textarea id="news_description" name="news_description" rows="4" required></textarea>
+            			</div>
+            
+           				<button type="submit" class="add-news-btn">Добавить новость</button>
+        			</form>
+    			</div>
+			</div>
         </div>
     </div>
     
     <script>
         function showTab(tabName) {
-            // Скрываем все вкладки
+
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            
-            // Показываем нужную
+
             document.getElementById(tabName + '-tab').classList.add('active');
             event.target.classList.add('active');
         }

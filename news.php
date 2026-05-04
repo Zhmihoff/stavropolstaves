@@ -70,10 +70,10 @@
             <div class="footer-section">
                 <h3>Акционерам и инвесторам</h3>
                 <ul>
-                    <li>Лабунов Данила Алексеевич</li>
-                    <li>23ИСИП-9-2</li>
+                    <li>ПАО "Ставропольэнергосбыт"</li>
+                	<li> info@staves.ru</li>
                     <li>+7 (962) 494-66-92</li>
-                    <li><a href="https://vk.com/zhmih26" target="_blank">Вконтакте</a></li>
+                    <li><a href="https://stavropolstaves.infinityfree.me/admin-panel.php" target="_blank">Администраторам</a></li>
                 </ul>
             </div>
         </div>

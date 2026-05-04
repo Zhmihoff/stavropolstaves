@@ -21,23 +21,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $form_data['account_number'] = trim($_POST['account_number'] ?? '');
     
     $errors = [];
-    
+
     if (empty($form_data['fio'])) $errors[] = 'Введите ФИО';
     if (empty($form_data['meter_number'])) $errors[] = 'Введите номер счётчика';
     if (empty($form_data['reason'])) $errors[] = 'Выберите причину';
     if (empty($form_data['phone'])) $errors[] = 'Введите номер телефона';
     if (empty($form_data['account_number'])) $errors[] = 'Введите номер лицевого счёта';
-    
-    if (!empty($form_data['phone']) && !preg_match('/^[\d\s\-\+\(\)]{10,}$/', $form_data['phone'])) {
-        $errors[] = 'Неверный формат телефона';
+
+    $phone_digits = preg_replace('/\D/', '', $form_data['phone']);
+    if (!empty($form_data['phone']) && strlen($phone_digits) !== 11) {
+        $errors[] = 'Номер телефона должен содержать ровно 11 цифр';
     }
-    
-    if (!empty($form_data['account_number']) && !preg_match('/^[\d\-]{6,20}$/', $form_data['account_number'])) {
-        $errors[] = 'Неверный формат лицевого счёта';
+ 
+    if (!empty($form_data['meter_number']) && mb_strlen($form_data['meter_number']) > 8) {
+        $errors[] = 'Номер счётчика не должен превышать 8 символов';
+    }
+
+    $account_digits = preg_replace('/\D/', '', $form_data['account_number']);
+    if (!empty($form_data['account_number']) && strlen($account_digits) !== 6) {
+        $errors[] = 'Номер лицевого счёта должен содержать ровно 6 цифр';
     }
     
     if (empty($errors)) {
-        
         try {
             $pdo = getDBConnection();
             
@@ -57,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
             
             $success = true;
-            
+
             $form_data = [
                 'fio' => '',
                 'meter_number' => '',
@@ -116,13 +121,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <?php if ($success): ?>
                 <div class="success-message">
-                    обращение успешно зарегистрировано! В скором времени с вами свяжется наш оператор.
+                    Обращение успешно зарегистрировано! В скором времени с вами свяжется наш оператор.
                 </div>
             <?php endif; ?>
             
             <?php if ($error): ?>
                 <div class="error-message">
-                     <?php echo $error; ?>
+                    <?php echo $error; ?>
                 </div>
             <?php endif; ?>
             
@@ -150,18 +155,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="meter_number">Номер счётчика *</label>
                     <input type="text" id="meter_number" name="meter_number" 
                            value="<?php echo htmlspecialchars($form_data['meter_number']); ?>" 
-                           placeholder="АБ123456789" required>
+                           placeholder="АБ123456"
+                           maxlength="8"
+                           required>
                 </div>
                 
                 <div class="form-group">
                     <label for="reason">Причина обращения *</label>
                     <select id="reason" name="reason" required>
                         <option value="">Выберите причину</option>
-                        <option value="monthly" <?php echo $form_data['reason'] === 'Ежемесячная' ? 'selected' : ''; ?>>Ежемесячная передача</option>
-                        <option value="replacement" <?php echo $form_data['reason'] === 'Замена' ? 'selected' : ''; ?>>Замена счётчика</option>
-                        <option value="correction" <?php echo $form_data['reason'] === 'Корректировка' ? 'selected' : ''; ?>>Корректировка показаний</option>
-                        <option value="initial" <?php echo $form_data['reason'] === 'Первоначальная' ? 'selected' : ''; ?>>Первоначальная передача</option>
-                        <option value="other" <?php echo $form_data['reason'] === 'Другое' ? 'selected' : ''; ?>>Другое</option>
+                        <option value="monthly" <?php echo $form_data['reason'] === 'monthly' ? 'selected' : ''; ?>>Ежемесячная передача</option>
+                        <option value="replacement" <?php echo $form_data['reason'] === 'replacement' ? 'selected' : ''; ?>>Замена счётчика</option>
+                        <option value="correction" <?php echo $form_data['reason'] === 'correction' ? 'selected' : ''; ?>>Корректировка показаний</option>
+                        <option value="initial" <?php echo $form_data['reason'] === 'initial' ? 'selected' : ''; ?>>Первоначальная передача</option>
+                        <option value="other" <?php echo $form_data['reason'] === 'other' ? 'selected' : ''; ?>>Другое</option>
                     </select>
                 </div>
                 
@@ -170,7 +177,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="tel" id="phone" name="phone" 
                            value="<?php echo htmlspecialchars($form_data['phone']); ?>" 
                            placeholder="89624946692" 
-                           pattern="^[\d\s\-\+\(\)]{10,}$" required>
+                           pattern="^\d{11}$"
+                           maxlength="11"
+                           inputmode="numeric"
+                           required>
                 </div>
                 
                 <div class="form-group">
@@ -189,8 +199,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit" class="submit-btn">Отправить показания</button>
             </form>
             <?php endif; ?>
-            
-           
         </div>
     </section>
 
@@ -206,14 +214,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <li><a href="meter.php">Передача показаний</a></li>
                 </ul>
             </div>
-
             <div class="footer-section">
                 <h3>Акционерам и инвесторам</h3>
-                <ul>
-                    <li>Лабунов Данила Алексеевич</li>
-                    <li>23ИСИП-9-2</li>
+               <ul>
+                    <li>ПАО "Ставропольэнергосбыт"</li>
+                    <li> info@staves.ru</li>
                     <li>+7 (962) 494-66-92</li>
-                    <li><a href="https://vk.com/zhmih26" target="_blank">Вконтакте</a></li>
+                    <li><a href="https://stavropolstaves.infinityfree.me/admin-panel.php" target="_blank">Администраторам</a></li>
                 </ul>
             </div>
         </div>
@@ -224,77 +231,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script>
         const phoneInput = document.getElementById('phone');
-
-        function formatPhone(value) {
-            let digits = value.replace(/\D/g, '');
-
-            if (digits.length > 11) digits = digits.slice(0, 11);
-
-            if (digits.length === 0) return '';
-            if (digits.length <= 1) return '+7 (' + digits;
-            if (digits.length <= 4) return '+7 (' + digits;
-            if (digits.length <= 7) return '+7 (' + digits.slice(0, 3) + ') ' + digits.slice(3);
-            if (digits.length <= 9) return '+7 (' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6);
-            if (digits.length <= 11) return '+7 (' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6, 8) + '-' + digits.slice(8);
-
-            return '+7 (' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6, 8) + '-' + digits.slice(8, 10);
-        }
-
-        phoneInput.addEventListener('input', function(e) {
-            const formatted = formatPhone(e.target.value);
-            e.target.value = formatted;
-        });
-
-        phoneInput.addEventListener('focus', function(e) {
-            if (e.target.value === '') {
-                e.target.value = '+7 (';
-            }
-        });
-
-        phoneInput.addEventListener('blur', function(e) {
-            const digits = e.target.value.replace(/\D/g, '');
-            if (digits.length < 11) {
-                e.target.value = '';
-            }
-        });
-
-        phoneInput.addEventListener('keydown', function(e) {
-            if ([8, 9, 13, 27, 46].includes(e.keyCode) ||
-                (e.keyCode === 65 && e.ctrlKey === true) ||
-                (e.keyCode >= 35 && e.keyCode <= 39)) {
-                return;
-            }
-
-            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && 
-                (e.keyCode < 96 || e.keyCode > 105)) {
-                e.preventDefault();
-            }
-        });        
-        
+        const meterInput = document.getElementById('meter_number');
         const accountInput = document.getElementById('account_number');
 
+        phoneInput.addEventListener('input', function(e) {
+            let digits = e.target.value.replace(/\D/g, '');
+            if (digits.length > 11) {
+                digits = digits.slice(0, 11);
+            }
+            e.target.value = digits;
+        });
+
+        meterInput.addEventListener('input', function(e) {
+            if (e.target.value.length > 8) {
+                e.target.value = e.target.value.slice(0, 8);
+            }
+        });
+
         accountInput.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/[^\d\-]/g, '').slice(0, 20);
+            e.target.value = e.target.value.replace(/[^\d]/g, '').slice(0, 6);
         });
 
         document.getElementById('meterForm').addEventListener('submit', function(e) {
             const phone = phoneInput.value.replace(/\D/g, '');
             const account = accountInput.value.replace(/\D/g, '');
+            const meter = meterInput.value;
 
-            if (phone.length < 11) {
+            if (phone.length !== 11) {
                 e.preventDefault();
-                alert('Пожалуйста, введите корректный номер телефона (11 цифр)');
+                alert('Пожалуйста, введите корректный номер телефона');
                 phoneInput.focus();
                 return false;
             }
 
-            if (account.length < 6) {
+            if (account.length !== 6) {
                 e.preventDefault();
-                alert('Номер лицевого счёта должен содержать минимум 6 цифр');
+                alert('Номер лицевого счёта должен содержать 6 цифр');
                 accountInput.focus();
                 return false;
-        	}
-    	});
-	</script>
+            }
+
+            if (meter.length > 8) {
+                e.preventDefault();
+                alert('Номер счётчика не должен превышать 8 символов');
+                meterInput.focus();
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>

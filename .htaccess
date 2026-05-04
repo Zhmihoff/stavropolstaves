@@ -1,0 +1,49 @@
+# === БАЗОВЫЕ НАСТРОЙКИ ДЛЯ INFINITYFREE ===
+Options -Indexes
+AddDefaultCharset UTF-8
+
+# === MIME-TYPES (ОБЯЗАТЕЛЬНЫЕ) ===
+<IfModule mod_mime.c>
+    AddType text/css .css
+    AddType application/javascript .js
+    AddType application/json .json
+    AddType image/svg+xml .svg
+    AddType image/png .png
+    AddType image/jpeg .jpg .jpeg
+    AddType image/gif .gif
+    AddType image/webp .webp
+    AddType font/woff2 .woff2
+    AddType font/woff .woff
+</IfModule>
+
+# === ПЕРЕНАПРАВЛЕНИЕ СТАТИКИ ===
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Исключаем статические файлы из обработки PHP
+    RewriteRule \.(css|js|png|jpg|jpeg|gif|svg|webp|woff|woff2|ico|json)$ - [L]
+    
+    # Исключаем папки
+    RewriteRule ^(css|js|img|fonts|api)/ - [L]
+</IfModule>
+
+# === ЗАЩИТА КОНФИГУРАЦИОННЫХ ФАЙЛОВ ===
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# === ОБРАБОТКА ОШИБОК ===
+ErrorDocument 404 /index.html
+ErrorDocument 403 /index.html
+ErrorDocument 500 "Internal Server Error"
+
+# === ОТКЛЮЧЕНИЕ ВЫПОЛНЕНИЯ PHP В ПАПКАХ ===
+<Directory "img">
+    php_flag engine off
+</Directory>

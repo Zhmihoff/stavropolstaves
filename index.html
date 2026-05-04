@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo_small.png">
+    <title>ПАО "Ставропольэнергосбыт" - Главная</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="Ставропольэнергосбыт" class="logo-icon">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="news.php">Новости</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="meter.php">Передача показаний</a></li>
+                </ul>
+            </nav>
+            <div class="phone-link">
+                <svg class="phone-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+7(962)494-44-92</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="cta-section">
+        <h2>Ставропольэнергосбыт — мы делаем мир светлее, а жизни ярче!</h2>
+        <a href="about.html" class="cta-button">О нас</a>
+    </section>
+
+    <section class="scroller-section">
+        <div class="scroller-container">
+            <button class="scroller-arrow left" onclick="scrollManual(-1)">&#10094;</button>
+            <div class="scroller-wrapper">
+                <div class="scroller" id="scroller">
+                    <div class="scroller-item">
+                        <h3>Новый удобный сайт</h3>
+                        <p>Добро пожаловать на новый сайт ПАО «Ставропольэнергосбыт»! Быстро и удобно просмотривайте новости, оформляйте обращения.</p>
+                    </div>
+                    <div class="scroller-item">
+                        <h3>Остерегайтесь мошенников!</h3>
+                        <p>Уважаемые абоненты ПАО «Ставропольэнергосбыт», участились случаи мошенничества. Настоятельно рекомендуем быть бдительными и не говорить лишнего.</p>
+                    </div>
+                    <div class="scroller-item">
+                        <h3>Техподдержка 24/7</h3>
+                        <p>Наши специалисты всегда на связи. Среднее время ответа — 2 минуты. Решаем любые вопросы по услугам и счетам.</p>
+                    </div>
+                    <div class="scroller-item">
+                        <h3>Объявление</h3>
+                        <p>Уважаемые потребители! Напоминаем, что с 01.03.2026 Федеральным законом от 24.06.2025 № 177-ФЗ изменены сроки оплаты коммунальных услуг — с 10 на 15 число месяца, следующего за расчетным.</p>
+                    </div>
+                    <!-- Дубликаты для бесконечной прокрутки -->
+                    <div class="scroller-item">
+                        <h3>Новый удобный сайт</h3>
+                        <p>Добро пожаловать на новый сайт ПАО «Ставропольэнергосбыт»! Быстро и удобно просмотривайте новости, оформляйте обращения.</p>
+                    </div>
+                    <div class="scroller-item">
+                        <h3>Остерегайтесь мошенников!</h3>
+                        <p>Уважаемые абоненты ПАО «Ставропольэнергосбыт», участились случаи мошенничества. Настоятельно рекомендуем быть бдительными и не говорить лишнего.</p>
+                    </div>
+                    <div class="scroller-item">
+                        <h3>Техподдержка 24/7</h3>
+                        <p>Наши специалисты всегда на связи. Среднее время ответа — 2 минуты. Решаем любые вопросы по услугам и счетам.</p>
+                    </div>
+                    <div class="scroller-item">
+                        <h3>Объявление</h3>
+                        <p>Уважаемые потребители! Напоминаем, что с 01.03.2026 Федеральным законом от 24.06.2025 № 177-ФЗ изменены сроки оплаты коммунальных услуг — с 10 на 15 число месяца, следующего за расчетным.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="scroller-arrow right" onclick="scrollManual(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="hero">
+        <h1>Надежный поставщик электроэнергии<br>в Ставропольском крае</h1>
+        <p>Мы обеспечиваем бесперебойное энергоснабжение более полумиллиона абонентов!</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Передача и распределение электроэнергии</h3>
+                <p>Стабильные поставки энергии для вашего дома и бизнеса</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3>Технологическое присоединение</h3>
+                <p>Подключение новых объектов к электросетям</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Поиск повреждений</h3>
+                <p>Оперативное выявление и устранение неисправностей</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛠️</div>
+                <h3>Обслуживание сетей</h3>
+                <p>Регулярное техническое обслуживание электросетей</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section" id="news">
+        <div class="section-header">
+            <h2>Последние новости</h2>
+            <a href="news.php" class="all-news-btn">Все новости →</a>
+        </div>
+        
+        <div class="news-grid" id="newsGrid">
+            <div class="loading-news">Загрузка новостей...</div>
+        </div>
+    </section>
+
+    <footer id="contacts">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Навигация</h3>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">О компании</a></li>
+                    <li><a href="news.php">Новости</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="meter.php">Передача показаний</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Акционерам и инвесторам</h3>
+                <ul>
+                    <li>Лабунов Данила Алексеевич</li>
+                    <li>23ИСИП-9-2</li>
+                    <li>+7 (962) 494-66-92</li>
+                    <li><a href="https://vk.com/zhmih26" target="_blank">Вконтакте</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 ПАО "Ставропольэнергосбыт"<br>Все права защищены</p>
+        </div>
+    </footer>
+
+    <script>
+        // === СКРОЛЛЕР ===
+        let currentIndex = 0;
+        const totalItems = 4;
+        const scroller = document.getElementById('scroller');
+        let autoScrollInterval;
+        const scrollIntervalTime = 5000;
+
+        function updateScroll() {
+            const itemWidth = scroller.querySelector('.scroller-item').offsetWidth + 4;
+            scroller.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+        }
+
+        function scrollManual(direction) {
+            currentIndex += direction;
+            if (currentIndex >= totalItems) currentIndex = 0;
+            else if (currentIndex < 0) currentIndex = totalItems - 1;
+            updateScroll();
+            resetAutoScroll();
+        }
+
+        function autoScroll() {
+            currentIndex++;
+            if (currentIndex >= totalItems) {
+                scroller.style.transition = 'none';
+                currentIndex = 0;
+                updateScroll();
+                setTimeout(() => { scroller.style.transition = 'transform 0.5s ease'; }, 50);
+            } else {
+                updateScroll();
+            }
+        }
+
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(autoScroll, scrollIntervalTime);
+        }
+
+        function resetAutoScroll() {
+            clearInterval(autoScrollInterval);
+            startAutoScroll();
+        }
+
+        const scrollerContainer = document.querySelector('.scroller-wrapper');
+        scrollerContainer.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+        scrollerContainer.addEventListener('mouseleave', () => startAutoScroll());
+
+        window.addEventListener('load', () => {
+            updateScroll();
+            startAutoScroll();
+            loadLatestNews();  // Загружаем новости после загрузки страницы
+        });
+
+        window.addEventListener('resize', () => updateScroll());
+
+        // === ЗАГРУЗКА ПОСЛЕДНИХ НОВОСТЕЙ ИЗ БАЗЫ ===
+        function loadLatestNews() {
+            const newsGrid = document.getElementById('newsGrid');
+            
+            fetch('api/get_news.php?sort=newest')
+                .then(response => {
+                    if (!response.ok) throw new Error('HTTP error ' + response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success && data.data.length > 0) {
+                        // Берём только первые 3 новости
+                        const latestNews = data.data.slice(0, 3);
+                        displayNewsOnMain(latestNews);
+                    } else {
+                        newsGrid.innerHTML = '<div class="no-news">Новостей пока нет</div>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading news:', error);
+                    newsGrid.innerHTML = '<div class="error-news">Не удалось загрузить новости</div>';
+                });
+        }
+
+        function displayNewsOnMain(news) {
+            const newsGrid = document.getElementById('newsGrid');
+            let html = '';
+            
+            news.forEach(item => {
+                // Форматируем дату: "27 Мар 2026"
+                const dateObj = new Date(item.news_date + 'T00:00:00');
+                const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
+                const formattedDate = `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+                
+                html += `
+                    <a href="news.php" class="news-card-link">
+                        <div class="news-card">
+                            <div class="news-date">${formattedDate}</div>
+                            <div class="news-title">${escapeHtml(item.news_name)}</div>
+                        </div>
+                    </a>
+                `;
+            });
+            
+            newsGrid.innerHTML = html;
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>"']/g, m => map[m]);
+        }
+    </script>
+</body>
+</html>

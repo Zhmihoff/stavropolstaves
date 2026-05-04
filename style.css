@@ -1100,7 +1100,6 @@ footer {
     border-radius: 10px;
 }
 
-/* ==================== ADMIN LOGIN ==================== */
 .admin-login-page {
     min-height: 100vh;
     display: flex;
@@ -1189,7 +1188,6 @@ footer {
     text-decoration: underline;
 }
 
-/* ==================== ADMIN PANEL ==================== */
 .admin-panel {
     min-height: calc(100vh - 200px);
     background: #f5f5f5;

@@ -1,4 +1,4 @@
-<?php
+?php
 session_start();
 require_once 'config.php';
 
@@ -78,6 +78,7 @@ try {
     $message_type = 'error';
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -85,7 +86,6 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Панель администратора - ПАО "Ставропольэнергосбыт"</title>
     <link rel="stylesheet" href="style.css">
-   
 </head>
 <body>
     <div class="admin-panel">
@@ -96,13 +96,10 @@ try {
                 <a href="admin-logout.php" class="logout-btn">Выйти</a>
             </div>
         </header>
-        
         <div class="admin-content">
             <?php if ($message): ?>
                 <div class="message <?php echo $message_type; ?>"><?php echo htmlspecialchars($message); ?></div>
             <?php endif; ?>
-            
-            <!-- Статистика -->
             <div class="admin-stats">
                 <div class="stat-card">
                     <div class="stat-number"><?php echo $stats['news_count']; ?></div>
@@ -117,15 +114,11 @@ try {
                     <div class="stat-label">Новых заявок</div>
                 </div>
             </div>
-            
-            <!-- Вкладки -->
             <div class="tabs">
                 <button class="tab-btn active" onclick="showTab('news')">Новости</button>
                 <button class="tab-btn" onclick="showTab('readings')">Заявки</button>
                 <button class="tab-btn" onclick="showTab('add')">Добавить новость</button>
             </div>
-            
-            <!-- Вкладка: Новости -->
             <div id="news-tab" class="tab-content active">
                 <div class="admin-section">
                     <h2>Список новостей</h2>

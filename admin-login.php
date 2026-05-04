@@ -58,25 +58,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="admin-login-page">
         <div class="admin-login-container">
             <h1>Вход администратора</h1>
-            
             <?php if ($error): ?>
                 <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
-            
             <form method="POST" action="admin-login.php">
                 <div class="form-group">
                     <label for="username">Логин</label>
                     <input type="text" id="username" name="username" required autofocus>
                 </div>
-                
                 <div class="form-group">
                     <label for="password">Пароль</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                
                 <button type="submit" class="submit-btn">Войти</button>
             </form>
-            
             <a href="index.html" class="back-link">Вернуться на сайт</a>
         </div>
     </div>

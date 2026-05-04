@@ -1,1 +1,0 @@
-<?php echo "SUCCESS! PHP работает!"; ?>
